@@ -1,0 +1,26 @@
+name: Issues Auto Commenter
+
+permissions:
+  issues: write
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  comments:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create comment
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.issue.number }}
+          body: |
+            Thank you for opening this issue! 🚀
+  
+            We appreciate your contribution to our project. Our team will review the issue and get back to you as soon as possible.
+  
+            In the meantime, feel free to add any additional information or context that might help us understand and address the issue more effectively.
+  
+            Thanks again for your support! 💪
+          reactions: '+1'
